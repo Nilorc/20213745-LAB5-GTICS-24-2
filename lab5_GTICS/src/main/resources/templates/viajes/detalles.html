@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav th:replace="fragments/navbar :: fragment"></nav>
+    <div class="container mt-5">
+
+      <h1>Detalles del Viaje</h1>
+
+      <div class="mb-3">
+        <label for="puntoRecojo" class="form-label">Punto de Recojo</label>
+        <input type="text" class="form-control" id="puntoRecojo" th:value="${viaje.puntoRecojo}" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="cantPersonas" class="form-label">Cantidad de Personas</label>
+        <input type="number" class="form-control" id="cantPersonas" th:value="${viaje.cantPersonas}" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="cantPerros" class="form-label">Cantidad de Perros</label>
+        <input type="number" class="form-control" id="cantPerros" th:value="${viaje.cantPerros}" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="persona" class="form-label">Persona Titular</label>
+        <input type="text" class="form-control" id="persona" th:value="${viaje.persona.nombre}" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="lugar" class="form-label">Lugar de Destino</label>
+        <input type="text" class="form-control" id="lugar" th:value="${viaje.lugar.nombreLugar}" readonly>
+      </div>
+
+      <div class="mt-4">
+        <a href="/viajes" class="btn btn-secondary">Regresar</a>
+      </div>
+    </div>
+  </body>
+</html>

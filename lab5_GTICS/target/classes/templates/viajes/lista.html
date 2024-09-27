@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista de Viajes Programados</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav th:replace="fragments/navbar :: fragment"></nav>
+        <div class="container mt-5">
+
+            <h1 class="mb-4">Lista de Viajes Programados</h1>
+
+            <!-- Botón para agregar un nuevo viaje -->
+            <div class="mb-3">
+                <a href="/viajes/new" class="btn btn-primary">Nuevo Viaje</a>
+            </div>
+
+            <!-- Tabla para mostrar los viajes -->
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Persona Titular</th>
+                        <th>Destino</th>
+                        <th>Cantidad de Perros</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="viaje : ${viajes}">
+                        <td th:text="${viaje.persona.nombre}"></td>
+                        <td th:text="${viaje.lugar.nombreLugar}"></td>
+                        <td th:text="${viaje.cantPerros}"></td>
+                        <td>
+                            <!-- Botón de acciones con opciones desplegables -->
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Acciones
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" th:href="@{/viajes/detalles/{id}(id=${viaje.id})}">Ver Detalles</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/viajes/editar/{id}(id=${viaje.id})}">Editar</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/viajes/eliminar/{id}(id=${viaje.id})}">Eliminar</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Para activar el boton desplegable -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

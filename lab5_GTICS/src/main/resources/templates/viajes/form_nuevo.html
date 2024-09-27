@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nuevo Viaje</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav th:replace="fragments/navbar :: fragment"></nav>
+        <div class="container mt-5">
+            <h1>Nuevo Viaje</h1>
+            
+            <form action="#" th:action="@{/viajes/save}" th:object="${viaje}" method="post">
+                <div class="mb-3">
+                    <label for="puntoRecojo" class="form-label">Punto de Recojo</label>
+                    <input type="text" class="form-control" id="puntoRecojo" th:field="*{puntoRecojo}">
+                </div>
+                <div class="mb-3">
+                    <label for="cantPersonas" class="form-label">Cantidad de Personas</label>
+                    <input type="number" class="form-control" id="cantPersonas" th:field="*{cantPersonas}">
+                </div>
+                <div class="mb-3">
+                    <label for="cantPerros" class="form-label">Cantidad de Perros</label>
+                    <input type="number" class="form-control" id="cantPerros" th:field="*{cantPerros}">
+                </div>
+                <div class="mb-3">
+                    <label for="persona" class="form-label">Persona Titular</label>
+                    <select class="form-select" id="persona" th:field="*{persona.id}">
+                        <option th:each="persona : ${personas}" th:value="${persona.id}" th:text="${persona.nombre}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="lugar" class="form-label">Lugar de Destino</label>
+                    <select class="form-select" id="lugar" th:field="*{lugar.id}">
+                        <option th:each="lugar : ${lugares}" th:value="${lugar.id}" th:text="${lugar.nombreLugar}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Viaje</button>
+            </form>
+        </div>
+    </body>
+</html>
